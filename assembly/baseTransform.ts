@@ -302,16 +302,12 @@ export class BaseTransformVisitor extends AbstractTransformVisitor<Node> {
         return node;
     }
 
-    visitStatement(node: Statement): Statement {
-        return (node = this.visit(node) as Statement);
-    }
-
     visitSource(node: Source): Source {
         let statements: Statement[] = [];
         for (let i = 0; i < node.statements.length; i++) {
             const stmt = node.statements[i];
             this.depth++;
-            statements.push(this.visitStatement(stmt));
+            statements.push(this.visit(stmt) as Statement);
             this.depth--;
         }
         node.statements = statements;
