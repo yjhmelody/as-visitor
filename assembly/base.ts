@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import {
     Node,
     NodeKind,
@@ -79,10 +80,9 @@ import {
 } from "./as";
 
 import { AbstractVisitor } from "./visitor";
-import { toString } from "./utils";
 
 export class BaseVisitor extends AbstractVisitor<Node> {
-    depth: number = 0;
+    depth = 0;
 
     protected _visit(node: Node): void {
         switch (node.kind) {

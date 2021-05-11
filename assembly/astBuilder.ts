@@ -682,16 +682,16 @@ export class ASTBuilder extends BaseVisitor {
     }
 
     visitStringLiteral(str: string, singleQuoted: bool = false): void {
-        this.sb.push('"');
+        this.sb.push("\"");
         this.visitRawString(str, CharCode.DOUBLEQUOTE);
-        this.sb.push('"');
+        this.sb.push("\"");
     }
 
     private visitRawString(str: string, quote: CharCode): void {
         var sb = this.sb;
         var off = 0;
         var i = 0;
-        for (let k = str.length; i < k; ) {
+        for (let k = str.length; i < k;) {
             switch (str.charCodeAt(i)) {
                 case CharCode.NULL: {
                     if (i > off) sb.push(str.substring(off, (off = i + 1)));
@@ -738,7 +738,7 @@ export class ASTBuilder extends BaseVisitor {
                 case CharCode.DOUBLEQUOTE: {
                     if (quote == CharCode.DOUBLEQUOTE) {
                         if (i > off) sb.push(str.substring(off, i));
-                        sb.push('\\"');
+                        sb.push("\\\"");
                         off = ++i;
                     } else {
                         ++i;
